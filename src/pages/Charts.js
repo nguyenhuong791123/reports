@@ -1,6 +1,7 @@
 import React, { Component as C } from 'react';
 import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
+import { Chart } from "react-google-charts";
 
 class Charts extends C {
     constructor(props) {
@@ -8,18 +9,34 @@ class Charts extends C {
 
         this.state = {
             isUser: this.props.isUser
+            ,items: this.props.items
         }
     };
 
-    componentDidMount() {
-        this.props.isLoading(false);
+    _delLastIndex() {
+        const dl = this.state.items.data.length;
+        this.state.items.data.splice([dl-1])
+        this.state.items.data.map((obj) => {
+            const ol = obj.length;
+            if(dl > 0) {
+                obj.splice([ol-1])
+            }
+            return obj
+        });
     }
 
+    // componentDidMount() {
+    //     this.props.isLoading(false);
+    // }
+
     render() {
+        this._delLastIndex();
         return (
-            <div>
-                Charts
-            </div>
+            <Chart
+                chartType={ this.state.items.type }
+                data={ this.state.items.data }
+                options={ this.state.items.options }
+                legendToggle />
         )
     };
 };

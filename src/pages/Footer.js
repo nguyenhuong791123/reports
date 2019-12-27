@@ -5,13 +5,15 @@ import '../css/Footer.css';
 class Footer extends C {
     constructor(props) {
         super(props);
+
+        this.state = { copyright: this.props.copyright }
     }
 
     render() {
         return (
             <div>
                 <span>
-                    { this.props.copyright }
+                    { this.state.copyright }
                 </span>
             </div>
         );
