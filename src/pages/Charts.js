@@ -1,7 +1,9 @@
 import React, { Component as C } from 'react';
 import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import SimpleLineChart from '../utils/line/SimpleLineChart';
+import TinyLineChart from '../utils/line/TinyLineChart';
+import DashedLineChart from '../utils/line/DashedLineChart';
 
 class Charts extends C {
     constructor(props) {
@@ -32,26 +34,20 @@ class Charts extends C {
     render() {
         // this._delLastIndex();
         return (
-            <LineChart
-                width={500}
-                height={300}
-                data={ this.state.data }
-                margin={{ top: 5, right: 30, left: 20, bottom: 5, }}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-                <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-            </LineChart>
+            <div>
+                <SimpleLineChart
+                    data={ this.state.data }
+                    options={ this.state.options } />
 
-            // <Chart
-            //     chartType={ this.state.items.type }
-            //     data={ this.state.items.data }
-            //     options={ this.state.items.options }
-            //     legendToggle />
-        )
+                <TinyLineChart
+                    data={ this.state.data }
+                    options={ this.state.options } />
+
+                <DashedLineChart
+                    data={ this.state.data }
+                    options={ this.state.options } />
+            </div>
+        );
     };
 };
 
