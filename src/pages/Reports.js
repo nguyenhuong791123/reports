@@ -1,7 +1,8 @@
 import React, { Component as C } from 'react';
 import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
-import Form from 'react-bootstrap/Form';
+import Select from 'react-select';
+// import Form from 'react-bootstrap/Form';
 
 import { CHART_TYPE } from '../utils/Types';
 import Tables from './Tables';
@@ -16,8 +17,9 @@ class Reports extends C {
         this.state = {
             isUser: this.props.isUser
             ,items: this.props.items
+            ,options: null
             ,checked: []
-            ,types: null
+            // ,types: null
         }
     };
 
@@ -30,28 +32,33 @@ class Reports extends C {
             legend: "none"
         };
         this.state.items['data'] = [
-            ["", "契約件数", "契約継続件数", "総計"],
-            ["1月", 5, 7, 12],
-            ["2月", 2, 3, 5],
-            ["3月", 7, 7, 14],
-            ["4月", 3, 2, 5],
-            ["5月", 1, 2, 3],
-            ["6月", 3, 4, 7],
-            ["7月", 4, 3, 7],
-            ["8月", 7, 10, 17],
-            ["9月", 4, 5, 9],
-            ["10月", 4, 4, 8],
-            ["11月", 3, 4, 7],
-            ["12月", 10, 5, 15],
-            ["合計", 53, 56, 119]
-        ];
+            { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 }
+            ,{ name: 'Page B', uv: 3000, pv: 1398, amt: 2210 }
+            ,{ name: 'Page C', uv: 2000, pv: 9800, amt: 2290 }
+            ,{ name: 'Page D', uv: 2780, pv: 3908, amt: 2000 }
+            ,{ name: 'Page E', uv: 1890, pv: 4800, amt: 2181 }
+            ,{ name: 'Page F', uv: 2390, pv: 3800, amt: 2500 }
+            ,{ name: 'Page G', uv: 3490, pv: 4300, amt: 2100 }
+          ];
 
-        this.state.types = Object.keys(CHART_TYPE).map((obj) => { return obj });
+        this.state.options = this._chartOptions();
+    }
+
+    _chartOptions() {
+        const keys = Object.keys(CHART_TYPE);
+        return keys.map((key) => {
+            return {
+                label: key
+                ,options: CHART_TYPE[key].map((o) => {
+                        return { label: o, value: o }
+                    }) 
+                }
+        });
     }
 
     _onChecked(e) {
         const dIdx = Array.from(this.state.checked).indexOf(e.target.value);
-        if(e.target.checked != true) {
+        if(e.target.checked !== true) {
             console.log(dIdx)
             if(dIdx > 0)
                 this.state.checked.splice(dIdx);
@@ -72,29 +79,9 @@ class Reports extends C {
         this._loadDatas();
         return (
             <div>
-                <Tables
-                    isUser={ this.state.isUser }
-                    items={ this.state.items } />
-
-                {(() => {
-                    var chs = []
-                    const objs = this.state.types;
-                    for (let i=0; i<objs.length; i++) {
-                        chs.push(<Form.Check
-                                key={ i }
-                                id={ i }
-                                label={ objs[i] }
-                                type={ 'checkbox' }
-                                value={ objs[i] }
-                                onChange={ this._onChecked.bind(this) }
-                                custom inline />);
-                    }
-                    return(<div key={ 'div_chk' } className="mb-3">{ chs }</div>);
-                })()}
-
-                <Charts
-                    isUser={ this.state.isUser }
-                    items={ this.state.items } />            
+                <Tables items={ this.state.items } />
+                <Select options={ this.state.options } />
+                <Charts data={ this.state.items.data } options={ this.state.items.options } />     
             </div>
         )
     };

@@ -12,17 +12,16 @@ export const FILE_TYPE = {
 }
 
 export const CHART_TYPE = {
-    LINE: 'LineChart'
-    ,PIE: 'PieChart'
-    ,BAR: 'Bar'
-    ,BARCHART: 'BarChart'
-    ,AREA: 'AreaChart'
-    // ,BUBBLE: 'BubbleChart'
-    // ,CALENDAR: 'Calendar'
-    // ,CANDLESTISK: 'Candlestick'
-    ,COMBO: 'ComboChart'
-    ,SCATTER: 'ScatterChart'
-    // ,GANTT: 'Gantt'
-    ,GAUGE: 'Gauge'
-    ,GEO: 'GeoChart'
+    LINE: [ "SimpleLineChart", "TinyLineChart", "DashedLineChart", "VerticalLineChart", "BiaxialLineChart", "VerticalLineChartWithSpecifiedDomain", "LineChartConnectNulls", "LineChartWithXAxisPading", "LineChartWithReferenceLines", "CustomizedDotLineChart", "CustomizedLabelLineChart", "SynchronizedLineChart", "HighlightAndZoomLineChart", "LineChartHasMultiSeries", "LineChartAxisInterval" ]
+    ,AREA: [ "SimpleAreaChart", "StackedAreaChart", "TinyAreaChart", "PercentAreaChart", "CardinalAreaChart", "AreaChartConnectNulls", "SynchronizedAreaChart", "AreaChartFillByValue" ]
+    ,BAR: [ "TinyBarChart", "SimpleBarChart", "StackedBarChart", "MixBarChart", "CustomShapeBarChart", "PositiveAndNegativeBarChart", "BrushBarChart", "BarChartWithCustomizedEvent", "BarChartWithMinHeight", "BarChartStackedBySign", "BiaxialBarChart", "BarChartHasBackground", "BarChartWithMultiXAxis" ]
+    ,COMPOSED: [ "LineBarAreaComposedChart", "SameDataComposedChart", "VerticalComposedChart", "ComposedChartWithAxisLabels" ]
+    ,SCATTER: [ "SimpleScatterChart", "ThreeDimScatterChart", "JointLineScatterChart", "BubbleChart", "ScatterChartWithLabels", "MultipleYAxesScatterChart", "ScatterChartWithCells" ]
+    ,PIE: [ "TwoLevelPieChart", "StraightAnglePieChart", "TwoSimplePieChart", "CustomActiveShapePieChart", "PieChartWithCustomizedLabel", "PieChartWithPaddingAngle" ]
+    ,RADAR: [ "SimpleRadarChart", "SpecifiedDomainRadarChart" ]
+    ,RADIA: [ "SimpleRadialBarChart" ]
+    ,TREE: [ "SimpleTreemap", "CustomContentTreemap" ]
+    ,TOOLTIP: [ "CustomContentOfTooltip" ]
+    ,LEGEND: [ "LegendEffectOpacity" ]
+    ,RESPNSIVE: [ "AreaResponsiveContainer", "ComposedResponsiveContainer", "PieResponsiveContainer" ]
 }
