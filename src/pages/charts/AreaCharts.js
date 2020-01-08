@@ -58,7 +58,7 @@ class AreaCharts extends C {
         // return dataMax / (dataMax - dataMin);
     };
 
-    _renderAreas() {
+    _renders() {
         var objs = []
         var datas = this.state.data;
         const keys = Object.keys(datas[0]);
@@ -73,7 +73,7 @@ class AreaCharts extends C {
                 objs.push(<Tooltip key="tooltip" />);
 
                 for(var ls=0; ls<keys.length; ls++) {
-                    if(ls === 0) continue
+                    if(ls === 0) continue;
                     var key = keys[ls];
                     var arr = [];
                     for(var d=0; d<datas.length; d++) {
@@ -101,7 +101,7 @@ class AreaCharts extends C {
                 || this.state.type === "PercentAreaChart") {
                 objs.push(<Area key={ o } type="monotone" dataKey={ keys[o] } stroke={ this._colors() } fill={ this._colors() } stackId="1" />);
             } else if(this.state.type === "CardinalAreaChart") {
-                objs.push(<Area key={ o } type="monotone" dataKey={ keys[o] } stroke={ this._colors() } fill={ this._colors() } fillOpacity={ 0.3 } />);
+                // objs.push(<Area key={ o } type="monotone" dataKey={ keys[o] } stroke={ this._colors() } fill={ this._colors() } fillOpacity={ 0.3 } />);
                 objs.push(<Area key={ o } type={ this.state.cardinal.toString() } dataKey={ keys[o] } stroke={ this._colors() } fill={ this._colors() } fillOpacity={ 0.3 } />);
             } else if(this.state.type === "AreaChartConnectNulls") {
                 objs.push(<Area key={ o } connectNulls type="monotone" dataKey={ keys[o] } stroke={ this._colors() } fill={ this._colors() } />);
@@ -141,7 +141,7 @@ class AreaCharts extends C {
                 height={ this.state.options.height }
                 margin={ this.state.options.margin }
                 data={ this.state.data }>
-                { this._renderAreas() }
+                { this._renders() }
             </AreaChart>
         );
     };

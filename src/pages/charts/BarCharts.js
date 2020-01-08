@@ -75,7 +75,7 @@ class BarCharts extends C {
         return COLORS[ Math.floor( Math.random() * COLORS.length ) ];
     }
 
-    _renderLines() {
+    _renders() {
         var objs = []
         var datas = this.state.data;
         const keys = Object.keys(datas[0]);
@@ -169,7 +169,7 @@ class BarCharts extends C {
                 height={ this.state.options.height }
                 margin={ this.state.options.margin }
                 data={ this.state.data }>
-                { this._renderLines() }
+                { this._renders() }
             </BarChart>
         );
     };
