@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 
 import LineCharts from './charts/LineCharts';
+import AreaCharts from './charts/AreaCharts';
 import { CHART_TYPE } from '../utils/Types';
 
 class Charts extends C {
@@ -29,11 +30,13 @@ class Charts extends C {
     UNSAFE_componentWillReceiveProps(props) {
         console.log('CHARTS componentWillReceiveProps');
         this.state.type = props.type;
+        this.state.isChart = this._isChart(props.type);
         this.state.options = props.options;
         this.state.data = props.data;
     }
 
     render() {
+        console.log(this.state.isChart);
         return (
             <div>
                 {(() => {                    
@@ -44,9 +47,16 @@ class Charts extends C {
                                 options={ this.state.options }
                                 data={ this.state.data }/>        
                         );
+                    } else if(this.state.isChart === "AREA") {
+                        return (
+                            <AreaCharts
+                                type={ this.state.type }
+                                options={ this.state.options }
+                                data={ this.state.data }/>        
+                        );
                     } else {
                         return (
-                            <div />
+                            <div>Is This Not Chart Types!!!</div>
                         );
                     }
                 })()}

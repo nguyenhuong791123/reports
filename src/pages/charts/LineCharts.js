@@ -7,13 +7,10 @@ class LineCharts extends C {
     constructor(props) {
         super(props);
 
-        this._colors = this._colors.bind(this);
-
         this.state = {
             type: this.props.type
             ,options: this.props.options
             ,data: this.props.data
-            ,lines: []
         }
     };
 

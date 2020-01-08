@@ -13,7 +13,7 @@ export const FILE_TYPE = {
 
 export const CHART_TYPE = {
     LINE: [ "SimpleLineChart", "TinyLineChart", "DashedLineChart", "VerticalLineChart", "BiaxialLineChart", "VerticalLineChartWithSpecifiedDomain", "LineChartConnectNulls", "LineChartWithXAxisPading", "LineChartWithReferenceLines", "CustomizedDotLineChart", "CustomizedLabelLineChart", "SynchronizedLineChart", "HighlightAndZoomLineChart", "LineChartHasMultiSeries", "LineChartAxisInterval" ]
-    ,AREA: [ "SimpleAreaChart", "StackedAreaChart", "TinyAreaChart", "PercentAreaChart", "CardinalAreaChart", "AreaChartConnectNulls", "SynchronizedAreaChart", "AreaChartFillByValue" ]
+    ,AREA: [ "SimpleAreaChart", "StackedAreaChart", "TinyAreaChart", "PercentAreaChart", "CardinalAreaChart", "AreaChartConnectNulls", "AreaChartFillByValue" ] //, "SynchronizedAreaChart"
     ,BAR: [ "TinyBarChart", "SimpleBarChart", "StackedBarChart", "MixBarChart", "CustomShapeBarChart", "PositiveAndNegativeBarChart", "BrushBarChart", "BarChartWithCustomizedEvent", "BarChartWithMinHeight", "BarChartStackedBySign", "BiaxialBarChart", "BarChartHasBackground", "BarChartWithMultiXAxis" ]
     ,COMPOSED: [ "LineBarAreaComposedChart", "SameDataComposedChart", "VerticalComposedChart", "ComposedChartWithAxisLabels" ]
     ,SCATTER: [ "SimpleScatterChart", "ThreeDimScatterChart", "JointLineScatterChart", "BubbleChart", "ScatterChartWithLabels", "MultipleYAxesScatterChart", "ScatterChartWithCells" ]
