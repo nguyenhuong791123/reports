@@ -12,26 +12,23 @@ class Reports extends C {
     constructor(props) {
         super(props);
 
-        this._onChecked = this._onChecked.bind(this);
+        this._onChanged = this._onChanged.bind(this);
 
         this.state = {
             isUser: this.props.isUser
-            ,items: this.props.items
-            ,options: null
-            ,checked: []
-            // ,types: null
+            ,options: this._chartOptions()
+            ,selected: CHART_TYPE.LINE[0]
+            ,items: { options: null, data: null }
         }
     };
 
     _loadDatas() {
-        this.state.items['type'] = CHART_TYPE.BAR
-        this.state.items['options'] = {
-            title: "年間契約総計",
-            // hAxis: { title: "", viewWindow: { min: 0, max: 15 } },
-            vAxis: { title: "件数", viewWindow: { min: 0, max: 15 } },
-            legend: "none"
+        this.state.items.options = {
+            width: 500
+            ,height: 300
+            ,margin: { top: 20, right: 30, left: 20, bottom: 5 }
         };
-        this.state.items['data'] = [
+        this.state.items.data = [
             { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 }
             ,{ name: 'Page B', uv: 3000, pv: 1398, amt: 2210 }
             ,{ name: 'Page C', uv: 2000, pv: 9800, amt: 2290 }
@@ -39,9 +36,7 @@ class Reports extends C {
             ,{ name: 'Page E', uv: 1890, pv: 4800, amt: 2181 }
             ,{ name: 'Page F', uv: 2390, pv: 3800, amt: 2500 }
             ,{ name: 'Page G', uv: 3490, pv: 4300, amt: 2100 }
-          ];
-
-        this.state.options = this._chartOptions();
+        ];
     }
 
     _chartOptions() {
@@ -56,18 +51,9 @@ class Reports extends C {
         });
     }
 
-    _onChecked(e) {
-        const dIdx = Array.from(this.state.checked).indexOf(e.target.value);
-        if(e.target.checked !== true) {
-            console.log(dIdx)
-            if(dIdx > 0)
-                this.state.checked.splice(dIdx);
-        } else {
-            if(dIdx <= 0)
-                this.state.checked.push(e.target.value);
-            this.state.items.type = e.target.value;    
-        }
-        console.log(this.state.checked)
+    _onChanged(e) {
+        console.log(e);
+        this.state.selected = e.value;
         this.forceUpdate();
     }
 
@@ -80,8 +66,8 @@ class Reports extends C {
         return (
             <div>
                 <Tables items={ this.state.items } />
-                <Select options={ this.state.options } />
-                <Charts data={ this.state.items.data } options={ this.state.items.options } />     
+                <Select options={ this.state.options } onChange={ this._onChanged.bind(this) } />
+                <Charts type={ this.state.selected } options={ this.state.items.options } data={ this.state.items.data } />     
             </div>
         )
     };

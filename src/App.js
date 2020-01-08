@@ -26,7 +26,6 @@ class App extends C {
         super(props);
 
         this._isLoading = this._isLoading.bind(this);
-        // this._loadDatas = this._loadDatas.bind(this);
 
         this.state = {
             loading: true
@@ -41,35 +40,8 @@ class App extends C {
         this.forceUpdate();
     }
 
-    // _loadDatas() {
-    //     this.state.items['type'] = CHART_TYPE.BAR
-    //     this.state.items['options'] = {
-    //         title: "年間契約総計",
-    //         // hAxis: { title: "", viewWindow: { min: 0, max: 15 } },
-    //         vAxis: { title: "件数", viewWindow: { min: 0, max: 15 } },
-    //         legend: "none"
-    //     };
-    //     this.state.items['data'] = [
-    //         ["", "契約件数", "契約継続件数", "総計"],
-    //         ["1月", 5, 7, 12],
-    //         ["2月", 2, 3, 5],
-    //         ["3月", 7, 7, 14],
-    //         ["4月", 3, 2, 5],
-    //         ["5月", 1, 2, 3],
-    //         ["6月", 3, 4, 7],
-    //         ["7月", 4, 3, 7],
-    //         ["8月", 7, 10, 17],
-    //         ["9月", 4, 5, 9],
-    //         ["10月", 4, 4, 8],
-    //         ["11月", 3, 4, 7],
-    //         ["12月", 10, 5, 15],
-    //         ["合計", 53, 56, 119]
-    //     ];
-    // }
-
     render() {
         console.log('APP Render !!!');
-        // this._loadDatas();
         return (
             <div>
                 <LoadingOverlay active={ this.state.loading } spinner text='Loading your content...' />
@@ -85,7 +57,6 @@ class App extends C {
                                     exact path={ ACTION.SLASH }
                                     render={ ({ props }) => <Reports
                                                                 isUser={ this.state.isUser }
-                                                                items={ this.state.items }
                                                                 isLoading={ this._isLoading.bind(this) }
                                                                 {...this.props} />} />
 

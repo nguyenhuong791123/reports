@@ -1,51 +1,55 @@
 import React, { Component as C } from 'react';
 import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
-import SimpleLineChart from '../utils/line/SimpleLineChart';
-import TinyLineChart from '../utils/line/TinyLineChart';
-import DashedLineChart from '../utils/line/DashedLineChart';
+
+import LineCharts from './charts/LineCharts';
+import { CHART_TYPE } from '../utils/Types';
 
 class Charts extends C {
     constructor(props) {
         super(props);
 
         this.state = {
-            options: this.props.options
+            type: this.props.type
+            ,isChart: this._isChart(this.props.type)
+            ,options: this.props.options
             ,data: this.props.data
         }
     };
 
-    // _delLastIndex() {
-    //     const dl = this.state.items.data.length;
-    //     this.state.items.data.splice([dl-1])
-    //     this.state.items.data.map((obj) => {
-    //         const ol = obj.length;
-    //         if(dl > 0) {
-    //             obj.splice([ol-1])
-    //         }
-    //         return obj
-    //     });
-    // }
+    _isChart(type) {
+        const keys = Object.keys(CHART_TYPE);
+        for(var i=0; i<keys.length; i++) {
+            if(Array.from(CHART_TYPE[keys[i]]).indexOf(type) > -1)
+                return keys[i]
+        }
+        return "LINE";
+    }
 
-    // componentDidMount() {
-    //     this.props.isLoading(false);
-    // }
+    UNSAFE_componentWillReceiveProps(props) {
+        console.log('CHARTS componentWillReceiveProps');
+        this.state.type = props.type;
+        this.state.options = props.options;
+        this.state.data = props.data;
+    }
 
     render() {
-        // this._delLastIndex();
         return (
             <div>
-                <SimpleLineChart
-                    data={ this.state.data }
-                    options={ this.state.options } />
-
-                <TinyLineChart
-                    data={ this.state.data }
-                    options={ this.state.options } />
-
-                <DashedLineChart
-                    data={ this.state.data }
-                    options={ this.state.options } />
+                {(() => {                    
+                    if(this.state.isChart === "LINE") {
+                        return (
+                            <LineCharts
+                                type={ this.state.type }
+                                options={ this.state.options }
+                                data={ this.state.data }/>        
+                        );
+                    } else {
+                        return (
+                            <div />
+                        );
+                    }
+                })()}
             </div>
         );
     };
