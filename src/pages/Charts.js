@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import LineCharts from './charts/LineCharts';
 import AreaCharts from './charts/AreaCharts';
+import BarCharts from './charts/BarCharts';
 import { CHART_TYPE } from '../utils/Types';
 
 class Charts extends C {
@@ -50,6 +51,13 @@ class Charts extends C {
                     } else if(this.state.isChart === "AREA") {
                         return (
                             <AreaCharts
+                                type={ this.state.type }
+                                options={ this.state.options }
+                                data={ this.state.data }/>        
+                        );
+                    } else if(this.state.isChart === "BAR") {
+                        return (
+                            <BarCharts
                                 type={ this.state.type }
                                 options={ this.state.options }
                                 data={ this.state.data }/>        

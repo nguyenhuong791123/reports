@@ -75,8 +75,8 @@ class AreaCharts extends C {
                 for(var ls=0; ls<keys.length; ls++) {
                     if(ls === 0) continue
                     var key = keys[ls];
-                    var max = Math.max(...datas.map(i => i[key]));
-                    var min = Math.min(...datas.map(i => i[key]));
+                    var max = Math.max(...datas.map((i) => i[key]));
+                    var min = Math.min(...datas.map((i) => i[key]));
                     var off = max / (max - min);
                     objs.push(<defs key={"defs" + [key]}>
                                 <linearGradient key={ ls } id={ "splitColor_" + [key] } x1="0" y1="0" x2="0" y2="1">
