@@ -17,7 +17,11 @@ class Tables extends C {
             <Table striped bordered hover>
                 {(() => {
                     var ths = headers.map((o, idx) => {
-                        return (<th key={idx}>{ o }</th>);
+                        if (idx === 0) {
+                            return (<th key={idx}>#</th>);
+                        } else {
+                            return (<th key={idx}>{ o }</th>);
+                        }
                     })
                     return(<thead><tr>{ ths }</tr></thead>);
                 })()}
