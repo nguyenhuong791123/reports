@@ -7,18 +7,39 @@ class Tables extends C {
     constructor(props) {
         super(props);
 
-        this.state = { items: this.props.items }
+        this.state = {
+            table: this.props.table
+            ,data: this.props.data
+        }
     };
 
+    UNSAFE_componentWillReceiveProps(props) {
+        console.log('TABLES componentWillReceiveProps');
+        this.state.table = props.table;
+        this.state.data = props.data;
+    }
+
     render() {
-        const headers = Object.keys(this.state.items.data[0]);
-        const datas = this.state.items.data;
+        const table = this.state.table;
+        var headers = (table === null)?null:table.headers;
+        var title = '#';
+        var objs = Object.keys(this.state.data[0]);
+        if(headers === null || headers.length <= 0) {
+            headers = objs;
+        } else {
+            title = headers[0];
+            headers[0] = 'name';
+        }
+        console.log(headers);
+        const datas = this.state.data;
         return (
             <Table striped bordered hover>
                 {(() => {
                     var ths = headers.map((o, idx) => {
                         if (idx === 0) {
-                            return (<th key={idx}>#</th>);
+                            if(title === null || title.length <= 0 || title === 'name')
+                                title = '#';
+                            return (<th key={idx}>{ title }</th>);
                         } else {
                             return (<th key={idx}>{ o }</th>);
                         }

@@ -25,10 +25,21 @@ class Charts extends C {
         for(var i=0; i<type.length; i++) {
             for(var o=0; o<keys.length; o++) {
                 if(Array.from(CHART_TYPE[keys[o]]).indexOf(type[i]) > -1)
-                types.push(keys[o]);
+                    types.push(keys[o]);
             }
         }
         return types;
+    }
+
+    _isConvertData() {
+        if(this.state.options.notCol <= 0) return;
+        for(var i=0; i<this.state.data.length; i++) {
+            const dt = this.state.data[i];
+            const keys = Object.keys(dt);
+            for(var o=0; o<this.state.options.notCol; o++) {
+                delete dt[keys[keys.length - (o + 1)]];
+            }
+        }
     }
 
     UNSAFE_componentWillReceiveProps(props) {
@@ -40,12 +51,14 @@ class Charts extends C {
     }
 
     render() {
+        this._isConvertData();
         var isCharts = this.state.isCharts;
+        // console.log(this.state.data);
         return (
             <div className={ "recharts-box" }>
                 {(() => {
                     return isCharts.map((c, idx) => {
-                        console.log(c);
+                        // console.log(c);
                         if (c === "LINE") {
                             return (
                                 <LineCharts
