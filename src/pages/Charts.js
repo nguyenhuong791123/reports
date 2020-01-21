@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import LineCharts from './charts/LineCharts';
 import AreaCharts from './charts/AreaCharts';
 import BarCharts from './charts/BarCharts';
+import ComposedCharts from './charts/ComposedCharts';
 import { CHART_TYPE } from '../utils/Types';
 
 class Charts extends C {
@@ -83,9 +84,17 @@ class Charts extends C {
                                     options={ this.state.options }
                                     data={ this.state.data }/>        
                             );
+                        } else if (c === "COMPOSED") {
+                            return (
+                                <ComposedCharts
+                                    key={ idx }
+                                    type={ this.state.type[idx] }
+                                    options={ this.state.options }
+                                    data={ this.state.data }/>        
+                            );
                         } else {
                             return (
-                                <div key={ idx }>Is This Not Chart Types!!!</div>
+                                <div key={ idx }>Not Support Chart Is This Types[{ c }]!!!</div>
                             );
                         }
                     });

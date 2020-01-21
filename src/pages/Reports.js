@@ -35,7 +35,7 @@ class Reports extends C {
             // ,prediction: { per: 10, rowIdx: 2 }    
         }
         this.state.items.options = {
-            width: 800
+            width: 700
             ,height: 450
             ,margin: { top: 30, right: 50, left: 30, bottom: 20 }
             ,notCol: 2

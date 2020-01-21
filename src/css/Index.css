@@ -4,7 +4,7 @@ div._loading_overlay_wrapper--active {
 
 div.recharts-box {
     overflow: hidden;
-    padding-left: 5%;
+    /* padding-left: 5%; */
 }
 
 div.recharts-wrapper {
