@@ -1,9 +1,9 @@
 import React, { Component as C } from 'react';
-import { ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 import { COLORS } from '../../utils/Types';
 
-class ComposedCharts extends C {
+class ScatterCharts extends C {
     constructor(props) {
         super(props);
 
@@ -21,7 +21,7 @@ class ComposedCharts extends C {
     _renders() {
         var objs = []
         var datas = this.state.data;
-        objs.push(<CartesianGrid key="cartesianGrid" troke={ this._colors() } />);
+        objs.push(<CartesianGrid key="cartesianGrid" />);
         if(this.state.type === "VerticalComposedChart") {
             objs.push(<XAxis key="xAxis" type="number" />);
             objs.push(<YAxis key="yAxis" dataKey="name" type="category" />);
@@ -32,8 +32,6 @@ class ComposedCharts extends C {
             objs.push(<XAxis key="xAxis" dataKey="name" />);
             objs.push(<YAxis key="yAxis" />);
         }
-        objs.push(<Tooltip key="tooltip" />);
-        objs.push(<Legend key="legend" />);
         for(var i=0; i<datas.length; i++) {
             if(i > 0)
                 break;
@@ -42,19 +40,21 @@ class ComposedCharts extends C {
                 if(o === 0)
                     continue
                 if((o%2) !== 0) {
-                    objs.push(<Bar key={ o } dataKey={ keys[o] } barSize={ 5 } fill={ this._colors() } />);
-                } else if((o%3) !== 0 && this.state.type !== "SameDataComposedChart") {
-                    objs.push(<Line key={ o } type="monotone" dataKey={ keys[o] } stroke={ this._colors() } />);            
+                    objs.push(<XAxis key={ "xAxis_" + o } type="number" dataKey={ keys[o] } name="stature" unit="cm" />);
+                // } else if((o%3) !== 0 && this.state.type !== "SameDataComposedChart") {
+                //     objs.push(<Line type="monotone" dataKey={ keys[o] } stroke={ this._colors() } />);            
                 } else {
-                    objs.push(<Area key={ o } type="monotone" dataKey={ keys[o] } fill={ this._colors() } stroke={ this._colors() } />);
+                    objs.push(<YAxis key={ "yAxis_" + o } type="number" dataKey={ keys[o] } name="weight" unit="kg" />);
                 }
             }
         }
+        objs.push(<Tooltip key="tooltip" cursor={{ strokeDasharray: '3 3' }} />);
+        objs.push(<Scatter key="scatter" name="A school" data={datas} fill={ this._colors() } />);
         return objs.map((o) => { return o; });
     }
 
     UNSAFE_componentWillReceiveProps(props) {
-        console.log('COMPOSEDCHARTS componentWillReceiveProps');
+        console.log('LINECHARTS componentWillReceiveProps');
         this.state.type = props.type;
         this.state.options = props.options;
         this.state.data = props.data;
@@ -62,22 +62,22 @@ class ComposedCharts extends C {
 
     render() {
         var layout = "horizontal";
-        // if(this.state.type === "VerticalComposedChart") {
-        //     layout = "vertical";
-        // } else {
-        //     layout = "horizontal";
-        // }
+        if(this.state.type === "VerticalComposedChart") {
+            layout = "vertical";
+        } else {
+            layout = "horizontal";
+        }
         return (
-            <ComposedChart
+            <ScatterChart
                 layout={ layout }
                 width={ this.state.options.width }
                 height={ this.state.options.height }
                 margin={ this.state.options.margin }
                 data={ this.state.data }>
                 { this._renders() }
-            </ComposedChart>
+            </ScatterChart>
         );
     };
 };
 
-export default ComposedCharts;
+export default ScatterCharts;

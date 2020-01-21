@@ -16,7 +16,7 @@ export const CHART_TYPE = {
     ,AREA: [ "SimpleAreaChart", "StackedAreaChart", "TinyAreaChart", "PercentAreaChart", "CardinalAreaChart", "AreaChartConnectNulls", "AreaChartFillByValue" ] //, "SynchronizedAreaChart"
     ,BAR: [ "TinyBarChart", "SimpleBarChart", "StackedBarChart", "MixBarChart", "CustomShapeBarChart", "PositiveAndNegativeBarChart", "BrushBarChart", "BarChartWithMinHeight", "BarChartStackedBySign", "BarChartHasBackground", "BarChartWithMultiXAxis" ] //, "BarChartWithCustomizedEvent", "BiaxialBarChart"
     ,COMPOSED: [ "LineBarAreaComposedChart", "SameDataComposedChart", "VerticalComposedChart", "ComposedChartWithAxisLabels" ]
-    ,SCATTER: [ "SimpleScatterChart", "ThreeDimScatterChart", "JointLineScatterChart", "BubbleChart", "ScatterChartWithLabels", "MultipleYAxesScatterChart", "ScatterChartWithCells" ]
+    // ,SCATTER: [ "SimpleScatterChart", "ThreeDimScatterChart", "JointLineScatterChart", "BubbleChart", "ScatterChartWithLabels", "MultipleYAxesScatterChart", "ScatterChartWithCells" ]
     ,PIE: [ "TwoLevelPieChart", "StraightAnglePieChart", "TwoSimplePieChart", "CustomActiveShapePieChart", "PieChartWithCustomizedLabel", "PieChartWithPaddingAngle" ]
     ,RADAR: [ "SimpleRadarChart", "SpecifiedDomainRadarChart" ]
     ,RADIA: [ "SimpleRadialBarChart" ]

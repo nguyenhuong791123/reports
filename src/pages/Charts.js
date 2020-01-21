@@ -6,6 +6,10 @@ import LineCharts from './charts/LineCharts';
 import AreaCharts from './charts/AreaCharts';
 import BarCharts from './charts/BarCharts';
 import ComposedCharts from './charts/ComposedCharts';
+// import ScatterCharts from './charts/ScatterCharts';
+import PieCharts from './charts/PieCharts';
+import RadarCharts from './charts/RadarCharts';
+import RadialBarCharts from './charts/RadialBarCharts';
 import { CHART_TYPE } from '../utils/Types';
 
 class Charts extends C {
@@ -87,6 +91,38 @@ class Charts extends C {
                         } else if (c === "COMPOSED") {
                             return (
                                 <ComposedCharts
+                                    key={ idx }
+                                    type={ this.state.type[idx] }
+                                    options={ this.state.options }
+                                    data={ this.state.data }/>        
+                            );
+                        // } else if (c === "SCATTER") {
+                        //     return (
+                        //         <ScatterCharts
+                        //             key={ idx }
+                        //             type={ this.state.type[idx] }
+                        //             options={ this.state.options }
+                        //             data={ this.state.data }/>        
+                        //     );
+                        } else if (c === "PIE") {
+                            return (
+                                <PieCharts
+                                    key={ idx }
+                                    type={ this.state.type[idx] }
+                                    options={ this.state.options }
+                                    data={ this.state.data }/>        
+                            );
+                        } else if (c === "RADAR") {
+                            return (
+                                <RadarCharts
+                                    key={ idx }
+                                    type={ this.state.type[idx] }
+                                    options={ this.state.options }
+                                    data={ this.state.data }/>        
+                            );
+                        } else if (c === "RADIA") {
+                            return (
+                                <RadialBarCharts
                                     key={ idx }
                                     type={ this.state.type[idx] }
                                     options={ this.state.options }
